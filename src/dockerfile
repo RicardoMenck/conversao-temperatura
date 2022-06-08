@@ -1,0 +1,10 @@
+# Buscar sempre utilizar imagens oficiais e colocar a tag específica, versionando a imagem.
+FROM node:16.15.0
+WORKDIR /app
+# Estou aproveitando o cache das camadas
+COPY ./package*.json ./
+# Instalação da dependências separada dos arquivos
+RUN npm install
+COPY . .
+EXPOSE 8080
+CMD ["node", "server.js"]
