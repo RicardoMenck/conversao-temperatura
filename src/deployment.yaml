@@ -1,0 +1,21 @@
+# Deployment do conversor
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Nome da minha aplicação
+  name: conversor
+  # Especificações
+spec:
+  selector:
+    matchLabels:
+      app: conversor
+  template:
+    metadata:
+      labels:
+        app: conversor
+    spec:
+      containers:
+      - name: conversao-temperatura
+        image: ricardomenck/conversao-temperatura:latest
+        ports:
+        - containerPort: 8080
