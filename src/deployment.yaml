@@ -6,6 +6,7 @@ metadata:
   name: conversor
   # Especificações
 spec:
+  replicas: 5
   selector:
     matchLabels:
       app: conversor
@@ -19,3 +20,18 @@ spec:
         image: ricardomenck/conversao-temperatura:latest
         ports:
         - containerPort: 8080
+
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: conversor
+spec:
+  selector:
+    app: conversor
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30000
+  type: NodePort
